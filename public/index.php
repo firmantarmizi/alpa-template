@@ -51,13 +51,18 @@ $html = '<!DOCTYPE html>
                 extend: {
                     colors: {
                         primary: {
-                            100: "#e0f2fe",
-                            600: "#0284c7",
-                            700: "#0369a1",
-                            900: "#0c4a6e"
+                            100: "#fff7ed",
+                            200: "#ffedd5",
+                            300: "#fed7aa",
+                            400: "#fdba74",
+                            500: "#f97316",
+                            600: "#ea580c",
+                            700: "#c2410c",
+                            800: "#9a3412",
+                            900: "#7c2d12"
                         },
                         secondary: {
-                            500: "#f97316"
+                            500: "#0ea5e9"
                         }
                     }
                 }
@@ -93,32 +98,110 @@ $html = '<!DOCTYPE html>
             transition: all 0.3s ease;
         }
         .btn-secondary {
-            background-color: #f97316;
+            background-color: #0ea5e9;
             color: white;
         }
         .btn-secondary:hover {
+            background-color: #0284c7;
+        }
+        .btn-primary {
+            background-color: #f97316;
+            color: white;
+        }
+        .btn-primary:hover {
             background-color: #ea580c;
         }
         .btn-outline {
             background-color: transparent;
             border: 1px solid;
         }
+        /* Navbar style seperti webelight.com */
+        .navbar {
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        .navbar-fixed {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-center {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar-logo {
+            height: 40px;
+            width: auto;
+        }
+        .navbar-menu {
+            display: flex;
+            gap: 2rem;
+        }
+        .navbar-link {
+            position: relative;
+            color: #4b5563;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .navbar-link:hover {
+            color: #f97316;
+        }
+        .navbar-link::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #f97316;
+            transition: width 0.3s ease;
+        }
+        .navbar-link:hover::after {
+            width: 100%;
+        }
+        .navbar-button {
+            padding: 0.5rem 1.5rem;
+            background-color: #f97316;
+            color: white;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .navbar-button:hover {
+            background-color: #ea580c;
+            transform: translateY(-2px);
+        }
+        /* Update hero section colors */
+        .hero-section {
+            background: linear-gradient(135deg, #f97316, #9a3412);
+        }
     </style>
 </head>
 <body class="antialiased bg-gray-50">
     <div class="min-h-screen flex flex-col">
-        <!-- Header -->
-        <header class="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+        <!-- Header - Styled like webelight.com -->
+        <header class="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm navbar">
             <div class="container-custom">
-                <div class="flex items-center justify-between py-4">
-                    <a href="#" class="text-2xl font-bold text-primary-600">ALPA</a>
-                    <nav class="hidden md:flex space-x-8">
-                        <a href="#beranda" class="font-medium text-gray-900 hover:text-primary-600">Beranda</a>
-                        <a href="#layanan" class="font-medium text-gray-900 hover:text-primary-600">Layanan</a>
-                        <a href="#tentang" class="font-medium text-gray-900 hover:text-primary-600">Tentang</a>
-                        <a href="#kontak" class="font-medium text-gray-900 hover:text-primary-600">Kontak</a>
+                <div class="navbar-center">
+                    <a href="#" class="flex items-center">
+                        <img src="img/logo.png" alt="ALPA Logo" class="navbar-logo">
+                    </a>
+                    
+                    <nav class="hidden lg:flex navbar-menu">
+                        <a href="#beranda" class="navbar-link">Beranda</a>
+                        <a href="#layanan" class="navbar-link">Layanan</a>
+                        <a href="#tentang" class="navbar-link">Tentang</a>
+                        <a href="#portofolio" class="navbar-link">Portofolio</a>
+                        <a href="#testimonial" class="navbar-link">Testimonial</a>
+                        <a href="#kontak" class="navbar-link">Kontak</a>
                     </nav>
-                    <div class="md:hidden">
+                    
+                    <div class="hidden lg:block">
+                        <a href="#kontak" class="navbar-button">Mulai Sekarang</a>
+                    </div>
+                    
+                    <div class="lg:hidden">
                         <button class="text-gray-900">
                             <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -131,7 +214,7 @@ $html = '<!DOCTYPE html>
         
         <!-- Main Content -->
         <main class="flex-grow">
-            ' . $content . '
+            ' . str_replace('from-primary-600 to-primary-900', 'hero-section', $content) . '
         </main>
         
         <!-- Footer -->
@@ -139,43 +222,45 @@ $html = '<!DOCTYPE html>
             <div class="container-custom">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div>
-                        <h3 class="text-xl font-bold mb-4">ALPA</h3>
+                        <div class="mb-4">
+                            <img src="img/logo.png" alt="ALPA Logo" class="h-10 w-auto">
+                        </div>
                         <p class="text-gray-400 mb-4">Template landing page modern untuk Laravel dengan TailwindCSS, AlpineJS, Livewire, Folio, dan Volt.</p>
                     </div>
                     <div>
                         <h4 class="text-lg font-semibold mb-4">Layanan</h4>
                         <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-400 hover:text-white">Web Development</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white">Mobile App Development</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white">UI/UX Design</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-primary-500">Web Development</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-primary-500">Mobile App Development</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-primary-500">UI/UX Design</a></li>
                         </ul>
                     </div>
                     <div>
                         <h4 class="text-lg font-semibold mb-4">Perusahaan</h4>
                         <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-400 hover:text-white">Tentang Kami</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white">Karir</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-primary-500">Tentang Kami</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-primary-500">Karir</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-primary-500">Blog</a></li>
                         </ul>
                     </div>
                     <div>
                         <h4 class="text-lg font-semibold mb-4">Kontak</h4>
                         <ul class="space-y-2">
                             <li class="flex items-start">
-                                <svg class="w-5 h-5 text-gray-400 mr-2 mt-0.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg class="w-5 h-5 text-primary-500 mr-2 mt-0.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
                                 <span class="text-gray-400">Jl. Contoh No. 123, Jakarta, Indonesia</span>
                             </li>
                             <li class="flex items-start">
-                                <svg class="w-5 h-5 text-gray-400 mr-2 mt-0.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg class="w-5 h-5 text-primary-500 mr-2 mt-0.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                 </svg>
                                 <span class="text-gray-400">info@example.com</span>
                             </li>
                             <li class="flex items-start">
-                                <svg class="w-5 h-5 text-gray-400 mr-2 mt-0.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg class="w-5 h-5 text-primary-500 mr-2 mt-0.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                 </svg>
                                 <span class="text-gray-400">+62 123 4567 890</span>
@@ -189,6 +274,21 @@ $html = '<!DOCTYPE html>
             </div>
         </footer>
     </div>
+    
+    <script>
+    // Script untuk navbar fixed saat scroll
+    document.addEventListener("DOMContentLoaded", function() {
+        const navbar = document.querySelector(".navbar");
+        
+        window.addEventListener("scroll", function() {
+            if (window.scrollY > 50) {
+                navbar.classList.add("navbar-fixed");
+            } else {
+                navbar.classList.remove("navbar-fixed");
+            }
+        });
+    });
+    </script>
 </body>
 </html>';
 
