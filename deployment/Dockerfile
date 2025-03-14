@@ -46,12 +46,16 @@ RUN mkdir -p /var/www/html/storage/app/public \
     && mkdir -p /var/www/html/storage/logs \
     && mkdir -p /var/www/html/bootstrap/cache \
     && chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html/storage
+    && chmod -R 755 /var/www/html/storage \
+    && chmod -R 755 /var/www/html/bootstrap/cache \
+    && chmod -R 755 /var/www/html/public
 
 # Create start script
 RUN echo '#!/bin/bash\n\
+echo "Starting Nginx..."\n\
 service nginx start\n\
-php-fpm\n\
+echo "Starting PHP-FPM..."\n\
+php-fpm -F\n\
 ' > /start.sh && chmod +x /start.sh
 
 # Expose port 80

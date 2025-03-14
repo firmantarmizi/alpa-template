@@ -104,7 +104,7 @@ Template ini dapat di-deploy ke berbagai platform hosting, termasuk:
 
 ## Kredit
 
-Dibuat oleh [Nama Anda]
+Dibuat oleh [Firman Tarmizi](https://github.com/firmantarmizi)
 
 ## Dukungan
 
