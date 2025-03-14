@@ -37,8 +37,15 @@ COPY deployment/php.ini /usr/local/etc/php/conf.d/custom.ini
 # Copy application files
 COPY . /var/www/html
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html \
+# Create Laravel required directories and set permissions
+RUN mkdir -p /var/www/html/storage/app/public \
+    && mkdir -p /var/www/html/storage/framework/cache \
+    && mkdir -p /var/www/html/storage/framework/sessions \
+    && mkdir -p /var/www/html/storage/framework/testing \
+    && mkdir -p /var/www/html/storage/framework/views \
+    && mkdir -p /var/www/html/storage/logs \
+    && mkdir -p /var/www/html/bootstrap/cache \
+    && chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html/storage
 
 # Create start script
