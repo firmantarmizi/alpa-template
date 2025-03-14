@@ -41,27 +41,6 @@ COPY deployment/php.ini /usr/local/etc/php/conf.d/custom.ini
 # Copy application files
 COPY . /var/www/html
 
-# Create a simple index.html for testing
-RUN echo '<!DOCTYPE html>\n\
-<html>\n\
-<head>\n\
-    <title>Laravel Template</title>\n\
-    <style>\n\
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; background-color: #f7fafc; }\n\
-        .container { text-align: center; padding: 2rem; background-color: white; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); max-width: 800px; }\n\
-        h1 { color: #4a5568; margin-bottom: 1rem; }\n\
-        p { color: #718096; line-height: 1.5; }\n\
-    </style>\n\
-</head>\n\
-<body>\n\
-    <div class="container">\n\
-        <h1>Laravel Landing Page Template</h1>\n\
-        <p>Selamat datang di template landing page Laravel yang menggunakan TailwindCSS, AlpineJS, Livewire, Folio, dan Volt.</p>\n\
-        <p>Template ini masih dalam tahap pengembangan dan sedang diuji di server.</p>\n\
-    </div>\n\
-</body>\n\
-</html>' > /var/www/html/public/index.html
-
 # Create Laravel required directories and set permissions
 RUN mkdir -p /var/www/html/storage/app/public \
     && mkdir -p /var/www/html/storage/framework/cache \
@@ -74,12 +53,6 @@ RUN mkdir -p /var/www/html/storage/app/public \
     && chmod -R 755 /var/www/html/storage \
     && chmod -R 755 /var/www/html/bootstrap/cache \
     && chmod -R 755 /var/www/html/public
-
-# Skip Composer install to avoid artisan errors
-# RUN composer install --no-interaction --no-dev --optimize-autoloader
-
-# Skip artisan commands
-# RUN php artisan key:generate --force
 
 # Create start script
 RUN echo '#!/bin/bash\n\
